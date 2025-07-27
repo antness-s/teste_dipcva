@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cad-volunter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <main id="form_container">
+        <div id="form_header">
+            <h1 id="form_title">
+                Ficha de voluntariado
+            </h1>
+
+            <button onclick="window.location.href='home.html'" class="btn-default-i">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
+        </div>
+
+        <form action="home.html" id="formVoluntario">
+            <div id="input_container">
+                <div class="input-box">
+                    <label for="name" class="form-label">
+                        Nome completo
+                    </label>  
+                    <div class="input-field">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="">
+                        <i class="fa-regular fa-user"></i>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label for="birthdate" class="form-label">
+                        Data de nascimento
+                    </label>
+                    <div class="input-field">
+                        <input type="date" name="birthdate" id="birthdate" class="form-control">
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label for="cpf" class="form-label">
+                        CPF
+                    </label>
+                    <div class="input-field">
+                        <input type="tel" name="cpf" id="cpf" class="form-control" placeholder="123.456.789-00">
+                        <i class="fa-regular fa-user"></i>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label for="rg" class="form-label">
+                        RG
+                    </label>
+                    <div class="input-field">
+                        <input type="tel" name="rg" id="rg" class="form-control"
+                            placeholder="">
+
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label for="email" class="form-label">
+                        E-mail
+                    </label>
+                    <div class="input-field">
+                        <input type="email" name="email" id="email" class="form-control"
+                            placeholder="exemplo@gmail.com">
+
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label for="telefone" class="form-label">
+                        Telefone
+                    </label>
+                    <div class="input-field">
+                        <input type="tel" name="telefone" id="telefone" class="form-control"
+                            placeholder="(--) 99628-8313">
+
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                </div>
+
+                <div class="radio-container">
+                    <label class="form-label">
+                        Gênero
+                    </label>
+
+                    <div id="gender_inputs">
+                        <div class="radio-box">
+                            <input type="radio" name="gender" id="female" class="form-control" value="female">
+                            <label for="female" class="form-label">
+                                Feminino
+                            </label>
+                        </div>
+
+                        <div class="radio-box">
+                            <input type="radio" name="gender" id="male" class="form-control" value="male">
+                            <label for="male" class="form-label">
+                                Masculino
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-default">
+                    Enviar
+                </button>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
