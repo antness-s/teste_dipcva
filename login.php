@@ -21,9 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $resultado = $stmt->get_result();
 
         if ($resultado->num_rows > 0) {
+            $usuario = $resultado->fetch_assoc();
             $_SESSION['loggedin'] = true;
             $_SESSION['email'] = $email;
-            header("Location: ./paginas/Pag2-AreaVolunter/home.html");
+            $_SESSION['is_admin'] = $usuario['is_admin'] == 1; // Define se é admin
+            // Redireciona com base no papel
+            if ($_SESSION['is_admin']) {
+                header("Location: ./paginas/Pag5-Dashboard/index.php"); // Admin vai para o CMS
+            } else {
+                header("Location: ./paginas/Pag2-AreaVolunter/home.php"); // Voluntário vai para a área dele
+            }
             exit();
         } else {
             $erro = "E-mail ou senha inválidos.";

@@ -93,6 +93,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <button type="submit" id="btnCadastrar">Cadastrar</button>
             <?php if ($erro) echo "<p style='color: red; text-align: center;'>$erro</p>"; ?>
+            <p class="cadastro">
+                Já possui cadastro?
+                <a href="../../login.php">Fazer login</a>
+            </p>
         </form>
     </main>
 
