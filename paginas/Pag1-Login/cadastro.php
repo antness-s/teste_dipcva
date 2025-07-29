@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif ($senha !== $confirmarSenha) {
         $erro = "As senhas não coincidem.";
     } else {
-        // Verifica se o email já existe
+ 
         $sql_verifica = "SELECT email FROM usuarios WHERE email = ?";
         $stmt_verifica = $conexao->prepare($sql_verifica);
         if ($stmt_verifica === false) {
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($resultado_verifica->num_rows > 0) {
                 $erro = "Este e-mail já está cadastrado.";
             } else {
-                // Insere o novo usuário
+                
                 $sql_insere = "INSERT INTO usuarios (email, senha, data_cadastro) VALUES (?, ?, CURRENT_TIMESTAMP)";
                 $stmt_insere = $conexao->prepare($sql_insere);
                 if ($stmt_insere === false) {
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt_insere->bind_param("ss", $email, $senha);
                     if ($stmt_insere->execute()) {
                         $erro = "Cadastro realizado com sucesso!";
-                        header("Location: ../../login.php"); // Ajuste o caminho para a raiz
+                        header("Location: ../../login.php"); 
                         exit();
                     } else {
                         $erro = "Erro ao executar inserção: " . $stmt_insere->error;

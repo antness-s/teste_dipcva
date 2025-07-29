@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Verifica se o usuário está logado e tem permissão de administrador
+
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     header("Location: ../../login.php");
     exit();
@@ -27,9 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_insere->bind_param("ssss", $nome, $tipo, $data, $status);
             if ($stmt_insere->execute()) {
                 $erro = "Acampamento cadastrado com sucesso!";
-                // Opcional: redirecionar para dashboard
-                // header("Location: ../Pag5-Dashboard/dashboard.php");
-                // exit();
+
             } else {
                 $erro = "Erro ao cadastrar acampamento: " . $stmt_insere->error;
             }

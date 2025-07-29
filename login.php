@@ -1,6 +1,3 @@
-
-<!-- Página de Stephanie -->
-
 <?php
 include 'backend/conexao.php';
 
@@ -24,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $usuario = $resultado->fetch_assoc();
             $_SESSION['loggedin'] = true;
             $_SESSION['email'] = $email;
+            $_SESSION['id_usuario'] = $usuario['id']; // Define o ID do usuário
             $_SESSION['is_admin'] = $usuario['is_admin'] == 1; // Define se é admin
             // Redireciona com base no papel
             if ($_SESSION['is_admin']) {
@@ -74,10 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <button type="submit" id="btnEntrar">Entrar</button>
             <?php if ($erro) echo "<p style='color: red; text-align: center;'>$erro</p>"; ?>
-            <p class="esqueceu-senha">
-                Esqueceu a sua senha?
-                <a href="paginas/Pag1-Login/esqueceu-senha.html">Clique aqui</a>
-            </p>
             <p class="cadastro">
                 Ainda não tem uma conta?
                 <a href="paginas/Pag1-Login/cadastro.php">Cadastre-se</a>
