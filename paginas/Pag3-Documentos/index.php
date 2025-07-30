@@ -50,6 +50,15 @@ $status = $ficha ? $ficha['status'] : 'Não enviada';
                     <p><strong>E-mail:</strong> <?php echo htmlspecialchars($ficha['email']); ?></p>
                     <p><strong>Telefone:</strong> <?php echo htmlspecialchars($ficha['telefone']); ?></p>
                     <p><strong>Gênero:</strong> <?php echo htmlspecialchars($ficha['genero']); ?></p>
+                    <p><strong>Número:</strong> <?php echo htmlspecialchars($ficha['numero'] ?: 'Nenhum'); ?></p>
+                    <p><strong>Bairro:</strong> <?php echo htmlspecialchars($ficha['bairro'] ?: 'Nenhum'); ?></p>
+                    <p><strong>Cidade:</strong> <?php echo htmlspecialchars($ficha['cidade'] ?: 'Nenhuma'); ?></p>
+                    <p><strong>Estado:</strong> <?php echo htmlspecialchars($ficha['estado'] ?: 'Nenhum'); ?></p>
+                    <p><strong>CEP:</strong> <?php echo htmlspecialchars($ficha['cep'] ?: 'Nenhum'); ?></p>
+                    <p><strong>Orgão/UP:</strong> <?php echo htmlspecialchars($ficha['orgao_up'] ?: 'Nenhum'); ?></p>
+                    <p><strong>Profissão:</strong> <?php echo htmlspecialchars($ficha['profissao'] ?: 'Nenhuma'); ?></p>
+                    <p><strong>Nacionalidade:</strong> <?php echo htmlspecialchars($ficha['nacionalidade'] ?: 'Nenhuma'); ?></p>
+                    <p><strong>Estado Civil:</strong> <?php echo htmlspecialchars($ficha['estado_civil'] ?: 'Nenhum'); ?></p>
                     <p><strong>Altura:</strong> <?php echo htmlspecialchars($ficha['altura']); ?> cm</p>
                     <p><strong>Peso:</strong> <?php echo htmlspecialchars($ficha['peso']); ?> kg</p>
                     <p><strong>Alergias:</strong> <?php echo htmlspecialchars($ficha['alergias'] ?: 'Nenhuma'); ?></p>
@@ -57,6 +66,8 @@ $status = $ficha ? $ficha['status'] : 'Não enviada';
                     <p><strong>Restrições Alimentares:</strong> <?php echo htmlspecialchars($ficha['restricoes'] ?: 'Nenhuma'); ?></p>
                     <p><strong>Doenças Pré-existentes:</strong> <?php echo htmlspecialchars($ficha['doencas'] ?: 'Nenhuma'); ?></p>
                     <p><strong>Observações:</strong> <?php echo htmlspecialchars($ficha['observacoes'] ?: 'Nenhuma'); ?></p>
+                    <p><strong>Função:</strong> <?php echo htmlspecialchars($ficha['funcao'] ?: 'Não informada'); ?></p>
+                    <p><strong>Tipo de Acampamento:</strong> <?php echo htmlspecialchars($ficha['tipo_acampamento'] ?: 'Não informado'); ?></p>
                 </div>
             <?php else: ?>
                 <p>Não há ficha de voluntariado registrada.</p>

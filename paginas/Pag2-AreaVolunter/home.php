@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-// Verifica se o usuário está logado
+
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: ../../login.php");
     exit();
 }
 
-// Lógica de logout
+
 if (isset($_GET['logout'])) {
     session_destroy();
     header("Location: ../../login.php");
@@ -30,9 +30,8 @@ if (isset($_GET['logout'])) {
 
     <div class="botoes">
       <a href="../Pag3-Documentos/index.php" class="botao">Meus Documentos</a>
-      <a href="../Pag4-Histórico.acp/index.html" class="botao">Histórico de Acampamentos</a>
       <a href="cad-volunter.php" class="botao">Preencher Ficha</a>
-      <a href="?logout=1" id="btnSair" class="botao">Sair</a> <!-- Alterado para link com parâmetro GET -->
+      <a href="?logout=1" id="btnSair" class="botao">Sair</a> 
     </div>
   </div>
 

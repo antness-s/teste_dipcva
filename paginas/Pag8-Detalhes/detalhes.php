@@ -112,19 +112,19 @@ if ($rg_imagem) {
             <div class="tt">
                 <p>Profissão:</p>
                 <div class="resposta">
-                    <p>Não informado</p>
+                    <p><?php echo htmlspecialchars($voluntario['profissao'] ?? 'Não informado'); ?></p>
                 </div>
             </div>
             <div class="tt">
                 <p>Nacionalidade:</p>
                 <div class="resposta">
-                    <p>Não informado</p>
+                    <p><?php echo htmlspecialchars($voluntario['nacionalidade'] ?? 'Não informado'); ?></p>
                 </div>
             </div>
             <div class="tt">
                 <p>Estado Civil:</p>
                 <div class="resposta">
-                    <p>Não informado</p>
+                    <p><?php echo htmlspecialchars($voluntario['estado_civil'] ?? 'Não informado'); ?></p>
                 </div>
             </div>
             <div class="tt">
@@ -136,7 +136,7 @@ if ($rg_imagem) {
             <div class="tt">
                 <p>Orgão/UP:</p>
                 <div class="resposta">
-                    <p>Não informado</p>
+                    <p><?php echo htmlspecialchars($voluntario['orgao_up'] ?? 'Não informado'); ?></p>
                 </div>
             </div>
             <div class="tt">
@@ -146,39 +146,69 @@ if ($rg_imagem) {
                 </div>
             </div>
             <div class="tt">
-                <p>Residente/Domiciliada na:</p>
-                <div class="resposta">
-                    <p>Não informado</p>
-                </div>
-            </div>
-            <div class="tt">
                 <p>Número:</p>
                 <div class="resposta">
-                    <p>Não informado</p>
+                    <p><?php echo htmlspecialchars($voluntario['numero'] ?? 'Não informado'); ?></p>
                 </div>
             </div>
             <div class="tt">
                 <p>Bairro:</p>
                 <div class="resposta">
-                    <p>Não informado</p>
+                    <p><?php echo htmlspecialchars($voluntario['bairro'] ?? 'Não informado'); ?></p>
                 </div>
             </div>
             <div class="tt">
                 <p>Cidade:</p>
                 <div class="resposta">
-                    <p>Não informado</p>
+                    <p><?php echo htmlspecialchars($voluntario['cidade'] ?? 'Não informado'); ?></p>
                 </div>
             </div>
             <div class="tt">
                 <p>Estado:</p>
                 <div class="resposta">
-                    <p>Não informado</p>
+                    <p><?php echo htmlspecialchars($voluntario['estado'] ?? 'Não informado'); ?></p>
                 </div>
             </div>
             <div class="tt">
                 <p>CEP:</p>
                 <div class="resposta">
-                    <p>Não informado</p>
+                    <p><?php echo htmlspecialchars($voluntario['cep'] ?? 'Não informado'); ?></p>
+                </div>
+            </div>
+            <div class="tt">
+                <p>Gênero:</p>
+                <div class="resposta">
+                    <p><?php echo htmlspecialchars($voluntario['genero'] ?? 'Não informado'); ?></p>
+                </div>
+            </div>
+            <div class="tt">
+                <p>Data de Nascimento:</p>
+                <div class="resposta">
+                    <p><?php echo htmlspecialchars($voluntario['data_nascimento'] ?? 'Não informado'); ?></p>
+                </div>
+            </div>
+            <div class="tt">
+                <p>E-mail:</p>
+                <div class="resposta">
+                    <p><?php echo htmlspecialchars($voluntario['email'] ?? 'Não informado'); ?></p>
+                </div>
+            </div>
+            <div class="tt">
+                <p>Telefone:</p>
+                <div class="resposta">
+                    <p><?php echo htmlspecialchars($voluntario['telefone'] ?? 'Não informado'); ?></p>
+                </div>
+            </div>
+            <div class="tt">
+                <p>Função:</p>
+                <div class="resposta">
+                    <p><?php echo htmlspecialchars($voluntario['funcao'] ?? 'Não informado'); ?></p>
+                </div>
+            </div>
+            <div class="tt">
+                <p>Tipo de Acampamento:</p>
+                <div class="resposta">
+                    <p><?php echo htmlspecialchars($voluntario['tipo_acampamento'] ?? 'Não informado'); ?></p>
                 </div>
             </div>
             <div class="tt">
