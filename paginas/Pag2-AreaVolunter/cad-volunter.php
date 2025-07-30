@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true)) {
     header("Location: ../../login.php");
     exit();
@@ -26,9 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $doencas = trim($_POST['doencas'] ?? '');
     $observacoes = trim($_POST['observacoes'] ?? '');
 
+    // Verifica se o usuário concordou com os termos
+    $concordou_termos = isset($_POST['concordou_termos']) && $_POST['concordou_termos'] === '1';
+
     $documento = null;
     if (isset($_FILES['documento']) && $_FILES['documento']['error'] == UPLOAD_ERR_OK) {
         $nome_arquivo = basename($_FILES['documento']['name']);
+        // Sanitiza o nome do arquivo para evitar problemas
+        $nome_arquivo = preg_replace('/[^A-Za-z0-9\-_\.]/', '_', $nome_arquivo);
         $destino = "uploads/" . $nome_arquivo;
         $tipos_permitidos = ['pdf', 'jpg', 'jpeg', 'png'];
         $extensao = strtolower(pathinfo($nome_arquivo, PATHINFO_EXTENSION));
@@ -36,13 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (move_uploaded_file($_FILES['documento']['tmp_name'], $destino)) {
                 $documento = $destino;
             } else {
-                $erro = "Erro ao mover o arquivo para o servidor.";
+                $erro = "Erro ao mover o arquivo para o servidor. Verifique as permissões da pasta uploads.";
             }
         } else {
             $erro = "Tipo de arquivo não permitido. Use PDF, JPG, JPEG ou PNG.";
         }
     } else {
-        $erro = "O upload do RG ou CNH é obrigatório.";
+        $erro = "O upload do RG ou CNH é obrigatório. Erro: " . $_FILES['documento']['error'];
     }
 
     $id_usuario = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : null;
@@ -61,16 +65,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erro = "Erro: Usuário não identificado. Faça login novamente.";
     }
 
-
-    if (empty($nome) || empty($data_nascimento) || empty($cpf) || empty($rg) || empty($email) || empty($telefone) || empty($genero) || empty($altura) || empty($peso) || $documento === null) {
-        $erro = "Por favor, preencha todos os campos obrigatórios: Nome, Data de Nascimento, CPF, RG, E-mail, Telefone, Gênero, Altura, Peso e anexe um RG ou CNH.";
+    if (empty($nome) || empty($data_nascimento) || empty($cpf) || empty($rg) || empty($email) || empty($telefone) || empty($genero) || empty($altura) || empty($peso) || $documento === null || !$concordou_termos) {
+        $erro = "Por favor, preencha todos os campos obrigatórios: Nome, Data de Nascimento, CPF, RG, E-mail, Telefone, Gênero, Altura, Peso, anexe um RG ou CNH e concorde com os termos.";
     } elseif (empty($erro) && $id_usuario) {
-        $sql_insere = "INSERT INTO voluntarios (id_usuario, nome, data_nascimento, cpf, rg, email, telefone, genero, altura, peso, alergias, medicamentos, restricoes, doencas, observacoes, documento, data_cadastro, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, 'pendente')";
+        $sql_insere = "INSERT INTO voluntarios (id_usuario, nome, data_nascimento, cpf, rg, email, telefone, genero, altura, peso, alergias, medicamentos, restricoes, doencas, observacoes, documento, data_cadastro, status, concordou_termos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, 'pendente', ?)";
         $stmt_insere = $conexao->prepare($sql_insere);
         if ($stmt_insere === false) {
             $erro = "Erro ao preparar consulta: " . $conexao->error;
         } else {
-            $stmt_insere->bind_param("issssssddddsssss", $id_usuario, $nome, $data_nascimento, $cpf, $rg, $email, $telefone, $genero, $altura, $peso, $alergias, $medicamentos, $restricoes, $doencas, $observacoes, $documento);
+            // Variável temporária para concordou_termos
+            $concordou_termos_val = $concordou_termos ? 1 : 0;
+            $stmt_insere->bind_param("issssssddddsssssi", $id_usuario, $nome, $data_nascimento, $cpf, $rg, $email, $telefone, $genero, $altura, $peso, $alergias, $medicamentos, $restricoes, $doencas, $observacoes, $documento, $concordou_termos_val);
             if ($stmt_insere->execute()) {
                 $erro = "Ficha de voluntariado enviada com sucesso! Aguarde aprovação.";
             } else {
@@ -232,6 +237,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="text" name="observacoes" id="observacoes" class="form-control" value="<?php echo isset($_POST['observacoes']) ? htmlspecialchars($_POST['observacoes']) : ''; ?>" placeholder="Se houver">
                         <i class="fa-regular fa-clipboard"></i>
                     </div>
+                </div>
+                <!-- Adição da caixa de seleção e link para o PDF -->
+                <div class="input-box terms-container">
+                    <label class="form-label">
+                        <input type="checkbox" name="concordou_termos" id="concordou_termos" value="1" <?php echo isset($_POST['concordou_termos']) ? 'checked' : ''; ?> required>
+                        Concordo com os termos e condições *
+                    </label>
+                    <a href="../../TERMO.pdf" target="_blank" class="terms-link">Ver termos (PDF)</a>
                 </div>
                 <button type="submit" class="btn-default">Enviar</button>
             </div>
