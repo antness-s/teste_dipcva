@@ -16,27 +16,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rg = trim($_POST['rg'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $telefone = trim($_POST['telefone'] ?? '');
-    $genero = trim($_POST['gender'] ?? ''); // Captura "female" ou "male"
+    $genero = trim($_POST['gender'] ?? '');
     $altura = trim($_POST['altura'] ?? '');
     $peso = trim($_POST['peso'] ?? '');
-    $numero = trim($_POST['numero'] ?? ''); // Novo campo
-    $bairro = trim($_POST['bairro'] ?? ''); // Novo campo
-    $cidade = trim($_POST['cidade'] ?? ''); // Novo campo
-    $estado = trim($_POST['estado'] ?? ''); // Novo campo
-    $cep = trim($_POST['cep'] ?? ''); // Novo campo
-    $orgao_up = trim($_POST['orgao_up'] ?? ''); // Novo campo
-    $profissao = trim($_POST['profissao'] ?? ''); // Novo campo
-    $nacionalidade = trim($_POST['nacionalidade'] ?? ''); // Novo campo
-    $estado_civil = trim($_POST['estado_civil'] ?? ''); // Novo campo
-    $alergias = trim($_POST['alergias'] ?? ''); // Opcional
-    $medicamentos = trim($_POST['medicamentos'] ?? ''); // Opcional
-    $restricoes = trim($_POST['restricoes'] ?? ''); // Opcional
-    $doencas = trim($_POST['doencas'] ?? ''); // Opcional
-    $observacoes = trim($_POST['observacoes'] ?? ''); // Opcional
-    $funcao = trim($_POST['funcao'] ?? ''); // Nova campo: Função
-    $tipo_acampamento = trim($_POST['tipo_acampamento'] ?? ''); // Nova campo: Tipo de Acampamento
+    $numero = trim($_POST['numero'] ?? '');
+    $bairro = trim($_POST['bairro'] ?? '');
+    $cidade = trim($_POST['cidade'] ?? '');
+    $estado = trim($_POST['estado'] ?? '');
+    $cep = trim($_POST['cep'] ?? '');
+    $orgao_up = trim($_POST['orgao_up'] ?? '');
+    $profissao = trim($_POST['profissao'] ?? '');
+    $nacionalidade = trim($_POST['nacionalidade'] ?? '');
+    $estado_civil = trim($_POST['estado_civil'] ?? '');
+    $alergias = trim($_POST['alergias'] ?? '');
+    $medicamentos = trim($_POST['medicamentos'] ?? '');
+    $restricoes = trim($_POST['restricoes'] ?? '');
+    $doencas = trim($_POST['doencas'] ?? '');
+    $observacoes = trim($_POST['observacoes'] ?? '');
+    $funcao = trim($_POST['funcao'] ?? '');
+    $tipo_acampamento = trim($_POST['tipo_acampamento'] ?? '');
 
-    // Verifica se o usuário concordou com os termos
     $concordou_termos = isset($_POST['concordou_termos']) && $_POST['concordou_termos'] === '1';
 
     $documento = null;
@@ -75,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erro = "Erro: Usuário não identificado. Faça login novamente.";
     }
 
-    // Converte campos opcionais vazios para NULL
     $numero = empty($numero) ? null : $numero;
     $bairro = empty($bairro) ? null : $bairro;
     $cidade = empty($cidade) ? null : $cidade;
@@ -103,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $concordou_termos_val = $concordou_termos ? 1 : 0;
             $params = array($id_usuario, $nome, $data_nascimento, $cpf, $rg, $email, $telefone, $genero, $altura, $peso, $numero, $bairro, $cidade, $estado, $cep, $orgao_up, $profissao, $nacionalidade, $estado_civil, $alergias, $medicamentos, $restricoes, $doencas, $observacoes, $documento, $funcao, $tipo_acampamento, $concordou_termos_val);
-            $types = "issssssssssssssssssssssssssi"; // Explicitamente 28 posições
+            $types = "issssssssssssssssssssssssssi";
             if (count($params) !== strlen($types)) {
                 $erro = "Erro: Número de parâmetros (" . count($params) . ") não corresponde à string de tipo (" . strlen($types) . "). Parâmetros: " . implode(", ", $params);
             } else {

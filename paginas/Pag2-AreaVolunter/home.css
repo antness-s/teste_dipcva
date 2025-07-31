@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
+  padding: 0;
 }
 
 .container-home {
@@ -22,8 +22,8 @@ body {
   padding: 40px 30px;
   border-radius: 30px;
   width: 400px;
-  max-width: 95%;
-  box-shadow: 0 4px 12px rgba(204,204,204,0.5);
+  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(204, 204, 204, 0.5);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@ body {
 }
 
 #nomeVoluntario {
-  color: (75, 75, 144);
+  color: rgb(75, 75, 144);
 }
 
 .container-home p {
@@ -53,7 +53,6 @@ body {
 
 .botoes .botao {
   padding: 10px;
-  align-self: center;
   width: 160px;
   border-radius: 30px;
   border: solid 1px rgb(75, 75, 144);
@@ -65,13 +64,13 @@ body {
   cursor: pointer;
   text-decoration: none;
   transition: 0.3s;
+  margin: 0 auto;
 }
 
 .botoes .botao:hover {
   background-color: rgb(75, 75, 144);
   color: white;
 }
-
 
 #btnSair {
   border: solid 1px rgb(75, 75, 144);
@@ -82,9 +81,27 @@ body {
   background-color: rgb(75, 75, 144);
 }
 
-@media (max-width: 450px) {
+@media screen and (max-width: 500px) {
   .container-home {
     width: 100%;
-    padding: 30px 20px;
+    min-height: 100vh;
+    padding: 32px;
+  }
+
+  .container-home h2 {
+    font-size: 22px;
+  }
+
+  .container-home p {
+    font-size: 14px;
+  }
+
+  .botoes {
+    gap: 12px;
+  }
+
+  .botoes .botao {
+    width: 140px;
+    font-size: 13px;
   }
 }

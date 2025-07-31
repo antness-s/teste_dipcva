@@ -103,7 +103,6 @@ body {
 
 #input_container {
   display: grid;
-  /*divide a página*/
   gap: 24px;
 }
 
